@@ -1,5 +1,6 @@
 import { createRouter, createWebHistory, RouteRecordRaw } from 'vue-router';
 import HomeView from '../views/HomeView.vue';
+import Navbar from '../components/Navbar.vue';
 
 const routes: Array<RouteRecordRaw> = [
   {
@@ -18,6 +19,7 @@ const routes: Array<RouteRecordRaw> = [
   {
     path: '/product',
     name: 'product',
+    navbar: Navbar,
     component: () => import('../components/ProductList.vue'),
   },
 ];
