@@ -7,4 +7,8 @@ import Navbar from '@/layout/AppNavbar.vue';
         <router-view />
     </div>
 </template>
-<style lang="scss"></style>
+<style lang="scss">
+body {
+  margin: 0px;
+}
+</style>

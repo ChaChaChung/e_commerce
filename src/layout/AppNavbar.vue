@@ -14,6 +14,9 @@ const model = ref([
 </script>
 <template>
   <nav class="nav-bar">
+    <div class="d-flex flex-row align-items-center">
+        <img rel="icon" alt="logo" src="@/assets/logo_h.jpg" height="50px" />
+    </div>
     <ul>
       <li v-for="item in model" :key="item.path">
         <router-link :to="item.path" :class="{ active: $route.path === item.path }">
@@ -25,7 +28,7 @@ const model = ref([
 </template>
 <style lang="scss" scoped>
 .nav-bar {
-  background-color: #ffffff;
+  background-color: #ffc1d6;
   padding: 12px 20px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   border-bottom: 2px solid #ddd;
