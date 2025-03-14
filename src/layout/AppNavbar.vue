@@ -6,29 +6,30 @@ const $route = useRoute();
 
 const model = ref([
   { name: '首頁', path: '/' },
-  { name: '全部商品', path: '/products' },
+  { name: '隊伍', path: '/teams' },
   // { name: '我的訂單', path: '/order' },
-  { name: '聯絡我們', path: '/about' },
+  // { name: '聯絡我們', path: '/about' },
 ]);
-
 </script>
+
 <template>
   <nav class="nav-bar">
     <div class="d-flex flex-row align-items-center">
-        <img rel="icon" alt="logo" src="@/assets/logo_h.jpg" height="50px" />
+      <img rel="icon" alt="logo" src="@/assets/logo_h.png" height="50px" />
+      <ul>
+        <li v-for="item in model" :key="item.path">
+          <router-link :to="item.path" :class="{ active: $route.path === item.path }">
+            {{ item.name }}
+          </router-link>
+        </li>
+      </ul>
     </div>
-    <ul>
-      <li v-for="item in model" :key="item.path">
-        <router-link :to="item.path" :class="{ active: $route.path === item.path }">
-          {{ item.name }}
-        </router-link>
-      </li>
-    </ul>
   </nav>
 </template>
+
 <style lang="scss" scoped>
 .nav-bar {
-  background-color: #ffc1d6;
+  background-color: #ffffff;
   padding: 12px 20px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   border-bottom: 2px solid #ddd;
@@ -63,8 +64,8 @@ const model = ref([
 }
 
 .nav-bar a.active {
-  background-color: #40648a;
-  color: white;
+  background-color: #002061;
+  color: #ffffff;
   font-weight: bold;
 }
 </style>

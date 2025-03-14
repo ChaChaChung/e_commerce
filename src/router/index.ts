@@ -1,6 +1,7 @@
 import { createRouter, createWebHistory, RouteRecordRaw } from 'vue-router';
 import AppLayout from '@/layout/AppLayout.vue';
 import HomeView from '../views/HomeView.vue';
+import TeamsView from '../views/TeamsView.vue';
 
 const routes: Array<RouteRecordRaw> = [
   {
@@ -21,9 +22,9 @@ const routes: Array<RouteRecordRaw> = [
         component: () => import(/* webpackChunkName: "about" */ '@/views/AboutView.vue'),
       },
       {
-        path: '/products',
-        name: 'product',
-        component: () => import('@/components/ProductList.vue'),
+        path: '/teams',
+        name: 'teams',
+        component: TeamsView,
       },
     ],
   },
