@@ -14,4 +14,19 @@ const getTestData = async () => {
   }
 };
 
-export default getTestData;
+const getEventsData = async (teamId) => {
+  try {
+    const response = await axios.get(`${API_BASE_URL}/get/team_past_events/${teamId}`);
+    console.log('API Response:', response.data);
+    return response.data;
+  } catch (error) {
+    console.error('Error fetching test data:', error);
+    throw error;
+  }
+};
+
+// 確保這裡導出這些函數
+export {
+  getTestData,
+  getEventsData,
+};

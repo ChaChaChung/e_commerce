@@ -1,7 +1,7 @@
 <template>
   <div class="row mt-3 mb-3" style="padding: 0 50px;">
     <Loading loader="dots" color="#002061" :active="isLoading" />
-    <div class="col-12 col-sm-6 mt-2" v-for="item in testData" :key="item.id">
+    <div class="col-12 col-sm-6 mt-2" v-for="item in testData" :key="item.team_id">
       <Card
         variant="borderless"
       >
@@ -23,6 +23,7 @@
               {{ item.team_site }}
             </a>
           </div>
+          <button @click="getEvents(item.team_id)">取得</button>
         </div>
       </Card>
     </div>
@@ -34,10 +35,24 @@ import { ref, onMounted } from 'vue';
 import { Card } from 'ant-design-vue';
 import Loading from 'vue-loading-overlay';
 import 'vue-loading-overlay/dist/css/index.css';
-import getTestData from '../api/test';
+import { getTestData, getEventsData } from '../api/test';
 
 const testData = ref(null);
+const eventsData = ref(null);
 const isLoading = ref(false);
+
+const getEvents = (teamId) => {
+  isLoading.value = true;
+  try {
+    const testResponse = getEventsData(teamId);
+    eventsData.value = testResponse;
+    console.log('eventsData.value: ', eventsData.value);
+  } catch (error) {
+    console.error('API Error:', error);
+  } finally {
+    isLoading.value = false;
+  }
+};
 
 onMounted(async () => {
   isLoading.value = true;
