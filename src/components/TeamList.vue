@@ -2,8 +2,8 @@
   <div class="row mt-3 mb-3" style="padding: 0 50px;">
     <Loading loader="dots" color="#002061" :active="isLoading" />
     <div class="col-12 col-sm-6 mt-2" v-for="item in testData" :key="item.team_id">
-      <Card
-        variant="borderless"
+      <a-card
+        :bordered="false"
       >
         <div
           class="d-flex"
@@ -25,14 +25,13 @@
           </div>
           <button @click="getEvents(item.team_id)">取得</button>
         </div>
-      </Card>
+      </a-card>
     </div>
   </div>
 </template>
 
 <script setup>
 import { ref, onMounted } from 'vue';
-import { Card } from 'ant-design-vue';
 import Loading from 'vue-loading-overlay';
 import 'vue-loading-overlay/dist/css/index.css';
 import { getTestData, getEventsData } from '../api/test';
