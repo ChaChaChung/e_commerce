@@ -36,7 +36,7 @@
 import { ref, onMounted } from 'vue';
 import Loading from 'vue-loading-overlay';
 import 'vue-loading-overlay/dist/css/index.css';
-import { getLeagueEventsData } from '../api/test';
+import { getLeagueEventsData, getLeagueLastEventsData } from '../api/test';
 
 const bodyStyle = ref({
   justifyContent: 'center',
@@ -57,8 +57,11 @@ const changeDate = async (count) => {
   // 等待 API 返回結果
   isLoading.value = true;
   try {
-    const testResponse = await getLeagueEventsData(initDate.value.replace(/-/g, ''));
-    eventsData.value = testResponse;
+    if (new Date(initDate.value) < todaysDate) {
+      eventsData.value = await getLeagueLastEventsData(initDate.value.replace(/-/g, ''));
+    } else {
+      eventsData.value = await getLeagueEventsData(initDate.value.replace(/-/g, ''));
+    }
   } catch (error) {
     console.error('API Error:', error);
   } finally {
@@ -69,7 +72,8 @@ const changeDate = async (count) => {
 onMounted(async () => {
   isLoading.value = true;
   try {
-    const testResponse = await getLeagueEventsData(initDate.value.replace(/-/g, ''));
+    // const testResponse = await getLeagueEventsData(initDate.value.replace(/-/g, ''));
+    const testResponse = await getLeagueEventsData('20250325');
     eventsData.value = testResponse;
     console.log('testData.value: ', eventsData.value);
   } catch (error) {
